@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 10px;
+            padding: auto;
+        }
+
+        img {
+            padding: auto;
+            border-radius: 10px;
+        }
+
+        span {
+            color: red;
+        }
+
+        h2 {
+            color: rgb(15, 54, 94);
+        }
+    </style>
+</head>
+
+<body>
+    <h2 style="margin-top: 20px; text-align: center;">What Is Variable Shadowing in JavaScript?</h2>
+    <p>To understand variable shadowing in JavaScript, we must first be aware of the two scopes we can declare
+        variables in:
+    <p>
+        <b><span>*</span> Local Scope:</b> Variables declared here are block-scoped or function-scoped;<br>
+        <b><span>*</span>Global Scope:</b> It's the outermost scope where any variable that's declared is available
+        globally.
+    </p>
+    <p> And, the three ways in which you can declare variables in those two scopes are as follows: </p>
+    <p>
+
+        <span>*</span> Using <i>var</i> — creates a function-scoped or globally-scoped variable;<br>
+        <span>*</span> Using <i>let</i> — creates a block-scoped local variable;<br>
+        <span>*</span> Using <i>const</i> — creates a block-scoped local constant.
+    </p>
+    <p>Now that you know the basics, you must remember the following rules that apply to variables depending on the
+        scope they're declared in:</p>
+    <ul>
+        <li>Variable Type and Scope Determine If the Value of Shadowed Variable Is Overwritten;</li>
+        <li>Local Scope Variables Take Precedence;</li>
+        <li>let or const Cannot be Shadowed in a Local Scope.</li>
+    </ul>
+    <h3>#Variable Type and Scope Determine If the Value of Shadowed Variable Is Overwritten:</h3>
+    <p>
+        <span> </span> Variables declared as<i>let</i>or<i>const</i>are block-scoped and they do not overwrite the value
+        of the shadowed
+        variable.
+        <img src="1.PNG" height="5%" width="500px" style="margin-left: 20%;">
+    </p>
+    <p>
+        This isn't true, however, for variables declared with<i>var</i>since they are not block-scoped (but rather
+        global and
+        function scoped). Therefore, they would overwrite values in block scope but not in function scope.
+    </p>
+    <img src="2.PNG" height="100%" width="500px" style="margin-left: 20%;">
+    <p>
+        Since variables declared as<i>var</i>are function-scoped, the nested function won't overwrite the one with the
+        same
+        name in the outer scope.
+    </p>
+    <img src="3.PNG" height="100%" width="500px" style="margin-left: 20%;">
+    <h3>#Local Scope Variables Take Precedence:</h3>
+
+    <p>When you use a local scoped variable of the same name, its value takes precedence over the outer scoped one.</p>
+    <img src="4.PNG" height="100%" width="500px" style="margin-left: 20%;">
+
+    <p>Same thing happens in a function scope as you can see in the code below:</p>
+    <img src="5.PNG" height="100%" width="500px" style="margin-left: 20%;">
+
+    <h3>#let or const Cannot be Shadowed in a Local Scope:</h3>
+
+    <p>In a local scope you cannot shadow another<i>let</i>or<i>const</i>. In that case, you will get an error as shown
+        below:</p>
+
+    <img src="6.PNG" height="100%" width="500px" style="margin-left: 20%;">
+
+    <p>However, a variable declared with<i>let</i>,<i>const</i>and<i>var</i>can shadow a global-scoped let, const and var variable. For
+        example:</p>
+
+    <img src="7.PNG" height="100%" width="500px" style="margin-left: 20%;">
+
+    <h2 style="margin-top: 20px; text-align: center;"> Hoisting: Different Scenarios
+    </h2>
+    <p>Though hoisting may seem very straightforward, it does have some things to be taken care of:</p>
+
+    <h4>1. Function Declarations:</h4>
+    <ul>
+        <li>Hoisted -✔</li>
+        <li>Initial Value - Actual Function</li>
+        <li>Scope - Block Scoped in case of strict mode & Function Scoped is sloppy/normal mode</li>
+    </ul>
+
+    <h4>2. Var Declarations:</h4>
+    <ul>
+        <li>Hoisted -✔</li>
+        <li>Initial Value - undefined</li>
+        <li>Scope - Function Scoped</li>
+    </ul>
+
+    <h4>3. let and const:</h4>
+    <ul>
+        <li>Hoisted -❌</li>
+        <li>Initial Value - <span> </span></li>
+        <li>Scope - Block Scoped</li>
+    </ul>
+
+    <p>For let and const, hoisting is not applicable so if we try to execute the following code</p>
+    <img src="pic0.png" height="100%" width="500px" style="margin-left: 20%;">
+
+    <p>So, for let and const declarations, we have something as the<b>Temporal Dead Zone</b>which is defined as an area
+        of code in which a variable is defined but cannot be used. This is primarily because the variable has an initial
+        value set as 'uninitialized'. The temporal dead zone lasts from the beginning of the scope to the point where
+        the variable is declared.</p>
+
+    <p>Let us see the code snippet below and make it even clearer:</p>
+    <img src="pic1.png" height="100%" width="500px" style="margin-left: 20%;">
+
+    <p>The figure below shows the Temporal Dead Zone for the snippet:</p>
+    <img src="TDZ.png" height="100%" width="500px" style="margin-left: 20%;">
+
+    <p>So if we try to access the variable in the Temporal Dead Zone, we get<b>ReferenceError</b>and this is why using
+        let and const is recommended so as to avoid issues due to hoisting in case of<i>var</i>.</p>
+
+</body>
+
+</html>
